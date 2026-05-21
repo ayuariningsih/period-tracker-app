@@ -1,4 +1,3 @@
-import "./App.css";
 import InstallPrompt from "./components/InstallPrompt";
 import Offline from "./components/Offline";
 import useOnlineStatus from "./hooks/useOnlineStatus";
@@ -20,7 +19,9 @@ function App() {
         <Offline />
       ) : (
         <>
-          <h1>My First PWA</h1>
+          <h1 className="text-green-forest-70 text-3xl font-bold">
+            My First PWA
+          </h1>
           <p>You're online! All features are available.</p>
           {/* Add the rest of your app content here */}
         </>

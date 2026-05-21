@@ -1,16 +1,29 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
+import { playwright } from "@vitest/browser-playwright";
+const dirname =
+  typeof __dirname !== "undefined"
+    ? __dirname
+    : path.dirname(fileURLToPath(import.meta.url));
+
+// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss,
+    tailwindcss(),
     VitePWA({
-      registerType: "autoUpdate", // Automatically update Service Worker
-      includeAssets: ["favicon.ico", "robots.txt", "apple-touch-icon.png"], // Files to cache
+      registerType: "autoUpdate",
+      // Automatically update Service Worker
+      includeAssets: ["favicon.ico", "robots.txt", "apple-touch-icon.png"],
+      // Files to cache
       workbox: {
         // Workbox is Google's Service Worker library
         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
@@ -38,7 +51,6 @@ export default defineConfig({
                 maxAgeSeconds: 60 * 60 * 24,
                 // Cache expires after 24 hours (86400 seconds)
               },
-
               cacheableResponse: {
                 statuses: [0, 200],
                 // Only cache status codes 0 (CORS) and 200 (success)
@@ -65,22 +77,31 @@ export default defineConfig({
         ],
       },
       manifest: {
-        name: "Menstruation Tracker App", // Full app name
-        short_name: "Menstruation Tracker App", // Short name displayed on home screen
+        name: "Menstruation Tracker App",
+        // Full app name
+        short_name: "Menstruation Tracker App",
+        // Short name displayed on home screen
         description: "It is a Progressive Web App to track your Menstruation",
-        start_url: "/", // The URL to load when the app starts
-        theme_color: "#ffffff", // Color of the top bar
-        background_color: "#ffffff", // Splash screen background color
-        display: "standalone", // Makes it look like a native app (hides browser UI)
-        orientation: "portrait", // Force portrait orientation
+        start_url: "/",
+        // The URL to load when the app starts
+        theme_color: "#ffffff",
+        // Color of the top bar
+        background_color: "#ffffff",
+        // Splash screen background color
+        display: "standalone",
+        // Makes it look like a native app (hides browser UI)
+        orientation: "portrait",
+        // Force portrait orientation
         icons: [
           {
-            src: "pwa-192x192.png", // Small icon
+            src: "pwa-192x192.png",
+            // Small icon
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "pwa-512x512.png", // Large icon
+            src: "pwa-512x512.png",
+            // Large icon
             sizes: "512x512",
             type: "image/png",
             purpose: "any maskable", // Works in various environments
@@ -89,4 +110,31 @@ export default defineConfig({
       },
     }),
   ],
+  test: {
+    projects: [
+      {
+        extends: true,
+        plugins: [
+          // The plugin will run tests for the stories defined in your Storybook config
+          // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
+          storybookTest({
+            configDir: path.join(dirname, ".storybook"),
+          }),
+        ],
+        test: {
+          name: "storybook",
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: playwright({}),
+            instances: [
+              {
+                browser: "chromium",
+              },
+            ],
+          },
+        },
+      },
+    ],
+  },
 });
