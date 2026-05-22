@@ -6,7 +6,7 @@ function App() {
   const isOnline = useOnlineStatus();
 
   return (
-    <div className="App">
+    <div>
       {/* Online status banner */}
       {!isOnline && (
         <div className="fixed top-0 bg-red-500 text-white p-2.5 text-center z-1000">

@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode variant for Tailwind v4 */
+@custom-variant dark (&:is(.dark, .dark *));
+
 @theme {
   /* green forest */
-  --color-green-forest-100: #344C3D;
-  --color-green-forest-70: #488E5F;
-  --color-green-forest-50: #7CBE97;
-  --color-green-forest-20: #E3F1E8;
-  --color-green-forest-10: #F1F7F3;
+  --color-green-forest-100: #344c3d;
+  --color-green-forest-70: #488e5f;
+  --color-green-forest-50: #7cbe97;
+  --color-green-forest-20: #e3f1e8;
+  --color-green-forest-10: #f1f7f3;
 
   /* pink rose */
-  --color-pink-rose-100: #D89598;
-  --color-pink-rose-70: #E5A8AA;
-  --color-pink-rose-50: #F0C4C5;
-  --color-pink-rose-20: #F9E8E9;
-  --color-pink-rose-10: #FDF5F6;
+  --color-pink-rose-100: #d89598;
+  --color-pink-rose-70: #e5a8aa;
+  --color-pink-rose-50: #f0c4c5;
+  --color-pink-rose-20: #f9e8e9;
+  --color-pink-rose-10: #fdf5f6;
 }
 
 :root {
@@ -29,8 +32,8 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -61,9 +64,11 @@
     --social-bg: rgba(47, 48, 58, 0.5);
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    color-scheme: dark;
   }
 }
 
+/* Enable class-based dark mode variant for Tailwind v4 */
 @layer base {
   body {
     margin: 0;
@@ -98,6 +103,22 @@
 
   p {
     margin: 0;
+  }
+
+  /* Sync variables with .dark class (used by Storybook) */
+  .dark {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    color-scheme: dark;
   }
 }
 

@@ -47,10 +47,10 @@ const buttonVariants = cva(
         theme: "default",
         className:
           // Light Mode
-          "bg-transparent text-green-forest-70 bg-green-forest-10 hover:bg-green-forest-10/30 active:bg-green-forest-20 " +
+          "bg-green-forest-20 text-green-forest-70 hover:bg-green-forest-20/50 active:bg-green-forest-20/80 " +
           "disabled:opacity-50 disabled:bg-transparent " +
           // Dark Mode
-          "dark:text-green-forest-50 dark:bg-green-forest-50/10 dark:hover:bg-green-forest-50/20 dark:active:bg-green-forest-50/20",
+          "dark:bg-green-forest-50/10 dark:text-green-forest-50 dark:hover:bg-green-forest-50/20 dark:active:bg-green-forest-50/30",
       },
 
       {
