@@ -93,6 +93,10 @@ export const Field = React.forwardRef<HTMLDivElement, FieldProps>(
                 children.props.className,
                 invalid && "border-red-500 focus:ring-red-500",
               ),
+              // Pass indeterminate only if it's true, to avoid passing it to native elements that don't support it as a boolean attribute
+              ...('indeterminate' in children.props && children.props.indeterminate !== undefined
+                ? { indeterminate: children.props.indeterminate || undefined }
+                : {}),
             })}
           </div>
           {invalid && error && (
