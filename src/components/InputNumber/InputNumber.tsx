@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
-import { cn } from "../../helpers/styles";
+import { cn } from "../../lib/helpers/styles";
 import { ChevronUp, ChevronDown, Plus, Minus } from "lucide-react";
 
 export interface InputNumberValueChangeEvent {

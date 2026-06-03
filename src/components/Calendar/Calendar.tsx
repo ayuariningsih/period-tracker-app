@@ -6,7 +6,7 @@ import React, {
   useRef,
   useEffect,
 } from "react";
-import { cn } from "../../helpers/styles";
+import { cn } from "../../lib/helpers/styles";
 import {
   ChevronLeft,
   ChevronRight,
@@ -20,7 +20,7 @@ import {
   getDaysInMonth,
   getFirstDayOfMonth,
   formatNativeDate,
-} from "../../utils/calendar.utils";
+} from "../../lib/utils/calendar.utils";
 import type {
   CalendarProps,
   DayMetadata,
@@ -30,9 +30,9 @@ import type {
   RangeValue,
   SingleCalendarProps,
   SingleValue,
-} from "../../types/calendar.types";
+} from "../../lib/types/calendar.types";
 
-import useOutsideClick from "../../hooks/useOutsideClick";
+import useOutsideClick from "../../lib/hooks/useOutsideClick";
 
 export const Calendar = forwardRef<HTMLInputElement, CalendarProps>(
   (props, ref) => {

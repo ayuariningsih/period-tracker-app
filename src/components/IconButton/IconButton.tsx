@@ -1,6 +1,6 @@
 import React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../helpers/styles";
+import { cn } from "../../lib/helpers/styles";
 import { type LucideIcon } from "lucide-react";
 
 const iconButtonVariants = cva(
@@ -37,26 +37,27 @@ const iconSizeMap = {
 };
 
 export interface IconButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof iconButtonVariants> {
   icon: LucideIcon;
 }
 
-export const IconButton = React.forwardRef<
-  HTMLButtonElement,
-  IconButtonProps
->(({ className, variant, size, icon: Icon, ...props }, ref) => {
-  const iconSize = size && iconSizeMap[size] ? iconSizeMap[size] : iconSizeMap.md;
+export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
+  ({ className, variant, size, icon: Icon, ...props }, ref) => {
+    const iconSize =
+      size && iconSizeMap[size] ? iconSizeMap[size] : iconSizeMap.md;
 
-  return (
-    <button
-      ref={ref}
-      className={cn(iconButtonVariants({ variant, size, className }))}
-      {...props}
-    >
-      <Icon size={iconSize} strokeWidth={2} />
-    </button>
-  );
-});
+    return (
+      <button
+        ref={ref}
+        className={cn(iconButtonVariants({ variant, size, className }))}
+        {...props}
+      >
+        <Icon size={iconSize} strokeWidth={2} />
+      </button>
+    );
+  },
+);
 
 IconButton.displayName = "IconButton";

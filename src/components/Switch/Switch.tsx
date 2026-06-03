@@ -1,8 +1,10 @@
 import React, { forwardRef, type InputHTMLAttributes, useId } from "react";
-import { cn } from "../../helpers/styles";
+import { cn } from "../../lib/helpers/styles";
 
-export interface SwitchProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "type" | "size"> {
+export interface SwitchProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "value" | "type" | "size"
+> {
   /** The current state of the switch */
   value?: boolean;
   /** Show an invalid state */
@@ -65,7 +67,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           className={cn(
             "absolute inset-0 bg-gray-300 dark:bg-gray-700 rounded-full transition-colors duration-200",
             colorClasses[color],
-            invalid && "ring-2 ring-red-500 ring-offset-2 dark:ring-offset-gray-900",
+            invalid &&
+              "ring-2 ring-red-500 ring-offset-2 dark:ring-offset-gray-900",
           )}
         />
 
@@ -101,7 +104,19 @@ export interface InlineSwitchProps extends SwitchProps {
 }
 
 export const InlineSwitch = forwardRef<HTMLInputElement, InlineSwitchProps>(
-  ({ label, showLabel = true, value, disabled, invalid, className, id: idProp, ...props }, ref) => {
+  (
+    {
+      label,
+      showLabel = true,
+      value,
+      disabled,
+      invalid,
+      className,
+      id: idProp,
+      ...props
+    },
+    ref,
+  ) => {
     const generatedId = useId();
     const id = idProp ?? generatedId;
 
@@ -126,7 +141,9 @@ export const InlineSwitch = forwardRef<HTMLInputElement, InlineSwitchProps>(
             htmlFor={id}
             className={cn(
               "text-sm font-medium cursor-pointer select-none transition-colors",
-              value ? "text-gray-900 dark:text-gray-100" : "text-gray-500 dark:text-gray-400",
+              value
+                ? "text-gray-900 dark:text-gray-100"
+                : "text-gray-500 dark:text-gray-400",
             )}
           >
             {label}

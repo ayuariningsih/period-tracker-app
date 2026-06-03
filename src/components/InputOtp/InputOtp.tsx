@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useRef, useEffect } from "react";
-import { cn } from "../../helpers/styles";
+import { cn } from "../../lib/helpers/styles";
 
 export interface InputOtpChangeEvent {
   value: string;

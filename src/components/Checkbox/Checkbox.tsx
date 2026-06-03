@@ -1,9 +1,11 @@
 import React, { forwardRef, type InputHTMLAttributes, useId } from "react";
-import { cn } from "../../helpers/styles";
+import { cn } from "../../lib/helpers/styles";
 import { Check, Minus } from "lucide-react";
 
-export interface CheckboxProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "type"> {
+export interface CheckboxProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "type"
+> {
   /** Indeterminate state of the checkbox */
   indeterminate?: boolean;
   /** Show an invalid state */
@@ -62,9 +64,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               "w-4.5 h-4.5 rounded border transition-all duration-200 flex items-center justify-center",
               "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900",
               "peer-focus-visible:ring-2 peer-focus-visible:ring-blue-600 peer-focus-visible:ring-offset-2 dark:peer-focus-visible:ring-offset-gray-900",
-              (checked || indeterminate) && "bg-blue-600 border-blue-600 dark:bg-blue-500 dark:border-blue-500",
+              (checked || indeterminate) &&
+                "bg-blue-600 border-blue-600 dark:bg-blue-500 dark:border-blue-500",
               invalid && "border-red-500 dark:border-red-500",
-              !checked && !indeterminate && !invalid && "group-hover:border-gray-400 dark:group-hover:border-gray-500",
+              !checked &&
+                !indeterminate &&
+                !invalid &&
+                "group-hover:border-gray-400 dark:group-hover:border-gray-500",
             )}
           >
             {indeterminate ? (
@@ -74,7 +80,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                 size={14}
                 className={cn(
                   "text-white transition-transform duration-200 scale-0",
-                  checked && "scale-100"
+                  checked && "scale-100",
                 )}
                 strokeWidth={4}
               />
@@ -96,7 +102,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                 htmlFor={checkboxId}
                 className={cn(
                   "text-sm font-medium transition-colors",
-                  checked || indeterminate ? "text-gray-900 dark:text-gray-100" : "text-gray-600 dark:text-gray-400"
+                  checked || indeterminate
+                    ? "text-gray-900 dark:text-gray-100"
+                    : "text-gray-600 dark:text-gray-400",
                 )}
               >
                 {label}

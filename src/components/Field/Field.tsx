@@ -1,5 +1,5 @@
 import React, { useId } from "react";
-import { cn } from "../../helpers/styles";
+import { cn } from "../../lib/helpers/styles";
 
 export interface FieldProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Form input element, i.e Input or Switch */
@@ -94,7 +94,8 @@ export const Field = React.forwardRef<HTMLDivElement, FieldProps>(
                 invalid && "border-red-500 focus:ring-red-500",
               ),
               // Pass indeterminate only if it's true, to avoid passing it to native elements that don't support it as a boolean attribute
-              ...('indeterminate' in children.props && children.props.indeterminate !== undefined
+              ...("indeterminate" in children.props &&
+              children.props.indeterminate !== undefined
                 ? { indeterminate: children.props.indeterminate || undefined }
                 : {}),
             })}

@@ -1,6 +1,6 @@
 import InstallPrompt from "./components/InstallPrompt";
 import Offline from "./components/Offline";
-import useOnlineStatus from "./hooks/useOnlineStatus";
+import useOnlineStatus from "./lib/hooks/useOnlineStatus";
 
 function App() {
   const isOnline = useOnlineStatus();
