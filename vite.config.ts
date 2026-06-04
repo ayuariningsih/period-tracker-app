@@ -137,4 +137,9 @@ export default defineConfig({
       },
     ],
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"), // Maps '@' to the 'src' folder
+    },
+  },
 });
