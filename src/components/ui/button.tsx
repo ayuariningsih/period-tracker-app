@@ -1,9 +1,9 @@
-import * as React from "react";
 import { type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./button-variants";
+import type { ComponentProps } from "react";
 
 function Button({
   className,
@@ -11,7 +11,7 @@ function Button({
   size = "default",
   asChild = false,
   ...props
-}: React.ComponentProps<"button"> &
+}: ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
   }) {
